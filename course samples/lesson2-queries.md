@@ -68,8 +68,31 @@ ORDER BY num DESC;
 SELECT name, birthdate FROM animals WHERE species='opossum';
 ```
 
+* Find the *names* of the *individual* animals *that* eat fish:
+```mysql
+SELECT name FROM animals JOIN diet ON animals.species = diet.species WHERE diet.food = 'fish';
+SELECT name FROM animals, diet WHERE animals.species = diet.species AND diet.food = 'fish';
+```
 
-## Lesson 1 Tables:
+* Find the one food that is eaten by only one animal:
+```mysql
+SELECT food, COUNT(animals.name) AS num
+FROM diet, animals
+WHERE diet.species = animals.species
+GROUP BY food
+HAVING num = 1;
+  
+SELECT food, COUNT(animals.name) AS num
+FROM diet JOIN animals 
+ON diet.species = animals.species
+GROUP BY food
+HAVING num = 1;
+```
+
+
+
+
+## Lesson 2 Tables:
 ### Creation:
 ```mysql
 CREATE TABLE animals (name text, species text, birthdate date);
