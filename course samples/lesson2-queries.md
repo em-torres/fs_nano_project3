@@ -89,6 +89,23 @@ GROUP BY food
 HAVING num = 1;
 ```
 
+* List all the taxonomic orders, using their common names, sorted by the number of animals of that order
+that the zoo has.
+```mysql
+SELECT ordernames.name, COUNT(*) AS num
+FROM ordernames, taxonomy, animals
+WHERE animals.species = taxonomy.name
+    AND taxonomy.t_order = ordernames.t_order
+GROUP BY ordernames.name
+ORDER BY num DESC;
+```
+```mysql
+SELECT ordernames.name, COUNT(*) AS num
+FROM (animals JOIN taxonomy ON animals.species = taxonomy.name) AS ani_tax
+JOIN ordernames ON ani_tax.t_order = ordernames.t_order
+GROUP BY ordernames.name
+ORDER BY num DESC;
+```
 
 
 
