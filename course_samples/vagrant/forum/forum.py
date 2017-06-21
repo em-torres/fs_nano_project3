@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # 
 # A buggy web service in need of a database.
-
 from flask import Flask, request, redirect, url_for
-
 from forumdb import get_posts, add_post
 
 app = Flask(__name__)
@@ -59,5 +57,4 @@ def post():
 
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=8000)
-
+    app.run(host='0.0.0.0', port=8000)

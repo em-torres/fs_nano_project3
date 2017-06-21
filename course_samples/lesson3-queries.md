@@ -3,5 +3,3 @@
 ```mysql
 SELECT name, id FROM students ORDER BY name ASC;
 ```
-
-## Lesson 3 Tables:
